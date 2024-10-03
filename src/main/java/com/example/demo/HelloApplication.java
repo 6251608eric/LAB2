@@ -22,6 +22,9 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     public static Scene scene;
+    Scene2 scene2 = new Scene2();
+    Scene3 scene3 = new Scene3();
+    Scene4 scene4 = new Scene4();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -39,7 +42,35 @@ public class HelloApplication extends Application {
         Button button2 = new Button("View Path Shape");
         Button button3 = new Button("View Shear Transform");
 
+        //Button handler to transition to next scene
+        button.setOnAction((ActionEvent event) -> {
+            try {
+                scene2.start(stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        //Button handler to transition to next scene
+        button2.setOnAction((ActionEvent event) -> {
+            try {
+                scene3.start(stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        //Button handler to transition to next scene
+        button3.setOnAction((ActionEvent event) -> {
+            try {
+                scene4.start(stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         hbox.getChildren().addAll(button, button2, button3);
+
 
         scene = new Scene(vbox, 800, 400);
         stage.setTitle("Main Screen");
