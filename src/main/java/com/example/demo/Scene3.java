@@ -22,6 +22,8 @@ import java.util.Optional;
  */
 public class Scene3 extends Application implements secondaryButtons {
 
+    public static Scene scene;
+
     @Override
     public void back(Stage stage) {
         stage.setScene(HelloApplication.scene);
@@ -58,6 +60,11 @@ public class Scene3 extends Application implements secondaryButtons {
         hbox.getChildren().addAll(code, back);
         vBox.getChildren().addAll(path, hbox);
         hbox.setAlignment(Pos.CENTER);
+
+
+        scene = new Scene(vBox, 800, 400);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
