@@ -1,5 +1,8 @@
-package com.eric.part1;
+package com.example.demo;
 
+import com.example.demo.CodeScene3;
+import com.example.demo.HelloApplication;
+import com.example.demo.secondaryButtons;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
