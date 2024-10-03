@@ -22,6 +22,8 @@ import java.util.Optional;
  */
 public class Scene3 extends Application implements secondaryButtons {
 
+    //implements the constructor and methods from CodeScene3
+    public CodeScene3 codeScene3 = new CodeScene3();
     public static Scene scene;
 
     @Override
@@ -61,10 +63,40 @@ public class Scene3 extends Application implements secondaryButtons {
         vBox.getChildren().addAll(path, hbox);
         hbox.setAlignment(Pos.CENTER);
 
+        //implements the constructor and methods from CodeScene3
+        code.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    codeScene3.setScene(scene);
+                    codeScene3.setString("src/main/java/com/eric/part1/Scene3.java");
+                    codeScene3.start(stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        //back button to go back to main scene and dialogue confirmation
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ButtonType buttonType = new ButtonType("OK");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Are you sure you want to go back?");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.get() == buttonType.OK) {
+
+                    back(stage);
+                }
+            }
+        });
+
 
         scene = new Scene(vBox, 800, 400);
         stage.setScene(scene);
         stage.show();
     }
 }
-

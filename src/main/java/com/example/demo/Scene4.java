@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.CodeScene3;
-import com.example.demo.HelloApplication;
-import com.example.demo.secondaryButtons;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,7 +21,8 @@ import java.util.Optional;
  */
 public class Scene4 extends Application implements secondaryButtons {
 
-    public CodeScene3 codeScene3 = new CodeScene3();
+    // to access the source code and implement methods from CodeScene2
+    public CodeScene2 codeScene2 = new CodeScene2();
     public static Scene scene;
 
     @Override
@@ -85,6 +83,39 @@ public class Scene4 extends Application implements secondaryButtons {
         hbox.getChildren().addAll(code, back);
         vBox.getChildren().addAll(root, hbox);
         hbox.setAlignment(Pos.CENTER);
+
+        //takes the string from CodeScene2 and puts into new scene
+        code.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    codeScene2.setScene(scene);
+                    codeScene2.setString("src/main/java/com/eric/part1/Scene4.java");
+                    codeScene2.start(stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        // back button and confirmation dialogue box
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ButtonType buttonType = new ButtonType("OK");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Are you sure you want to go back?");
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.get() == buttonType.OK) {
+
+                    back(stage);
+                }
+            }
+
+
+        });
 
 
         scene = new Scene(vBox, 800, 400);
